@@ -1,0 +1,12 @@
+server:
+  port: 8888
+spring:
+  application:
+    name: br-config-server1
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/brunoclaumari/br-config-server1
+          search-paths:
+          - 'greeting-service*'   
