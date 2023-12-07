@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.microsservico.cambioservice.model.Cambio;
 import com.microsservico.cambioservice.repository.CambioRepository;
 
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 @RequestMapping(value = "/cambio-service")
 public class CambioController {
@@ -25,6 +27,7 @@ public class CambioController {
     private CambioRepository repository;
 
     //http://localhost:8000/cambio-service/5/USD/BRL
+    @Operation(summary = "Get cambio from currency")
     @GetMapping("/{amount}/{from}/{to}")
     public ResponseEntity<Cambio> getCambio(
         @PathVariable BigDecimal amount,

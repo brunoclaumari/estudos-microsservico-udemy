@@ -5,7 +5,7 @@ import org.springframework.cloud.gateway.route.builder.RouteLocatorBuilder;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class ApiGatewayConfiguration {
 	
 	
@@ -14,7 +14,7 @@ public class ApiGatewayConfiguration {
 	 * o gatewayRouter serve para configurar as rotas dos serviços que serão
 	 * controlados pelo API gateway
 	 * */
-	@Bean
+	//@Bean
 	public RouteLocator gatewayRouter(RouteLocatorBuilder builder) {
 		
 		return builder.routes()
