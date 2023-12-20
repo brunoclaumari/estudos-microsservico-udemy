@@ -3,6 +3,8 @@ package com.microsservico.cambioservice.controller;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.slf4j.LoggerFactory;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +21,8 @@ import io.swagger.v3.oas.annotations.Operation;
 @RestController
 @RequestMapping(value = "/cambio-service")
 public class CambioController {
+	
+	private Logger logger = LoggerFactory.getLogger(CambioController.class);
 
     @Autowired
     private Environment environment;
@@ -35,6 +39,7 @@ public class CambioController {
         @PathVariable String to
     ){
 
+    	logger.info("getCambio is called with -> {}, {} and {} ", amount, from, to);
     	Cambio retornoCambio = repository.findByFromAndTo(from, to);
     	if(retornoCambio == null) {
     		throw new RuntimeException("Currency Unsupported");

@@ -3,6 +3,7 @@ package com.microsservico.cambioservice.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 //import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 //import io.swagger.v3.oas.annotations.info.Info;
 import io.swagger.v3.oas.models.Components;
@@ -16,6 +17,7 @@ import io.swagger.v3.oas.models.info.License;
 //version = "v1", 
 //description = "Documentation of Cambio Service API")
 //		)
+@OpenAPIDefinition
 @Configuration
 public class OpenApiConfiguration {
 

@@ -1,0 +1,19 @@
+****************DOCKER COMPOSE************************
+
+***Rodar yml do Docker compose
+  *Entrar na pasta onde o arquivo 'docker-compose.yml' está e:
+
+	docker-compose up
+	docker-compose up -d (subir os containers e desocupar o terminal)
+	docker-compose down (Desliga os containers alusivos ao docker compose)
+
+***Verificar status dos conteiners contidos no docker-compose
+	docker-compose ps (apenas o docker ps não resolve quando estamos usando um docker-compose.yml)
+
+
+***DISTRIBUTED TRACING SERVER com Zipkin*****
+
+	docker run -p 9411:9411 openzipkin/zipkin:2.23.2	 [baixar imagem e já rodar o container docker com portas definidas]
+	docker pull openzipkin/zipkin:2.23.2 	[se for só baixar a imagem primeiro]
+
+***Conectar Zipkin ao book-service
