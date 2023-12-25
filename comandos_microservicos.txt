@@ -16,4 +16,75 @@
 	docker run -p 9411:9411 openzipkin/zipkin:2.23.2	 [baixar imagem e já rodar o container docker com portas definidas]
 	docker pull openzipkin/zipkin:2.23.2 	[se for só baixar a imagem primeiro]
 
-***Conectar Zipkin ao book-service
+***Conectar Zipkin ao book-service, cambio-service e api-gateway
+
+>>>> Adicionar dependências Maven 
+
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-sleuth-zipkin</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.cloud</groupId>
+	<artifactId>spring-cloud-starter-sleuth</artifactId>
+</dependency>
+<dependency>
+	<groupId>org.springframework.amqp</groupId>
+	<artifactId>spring-rabbit</artifactId>
+</dependency>
+
+
+ >>>> ... e application.yml
+
+spring:
+  sleuth:
+    sampler:
+      probability: 1.0
+
+
+******************PARA FAZER O BUILD E CRIAR IMAGEM DOCKER******************************************
+
+	1* No arquivo 'pom.xml' do projeto naming-server, dentro da tag '<build>, <plugins>, <plugin>', embaixo do '<artifactId>' adicionar as seguintes tags:
+
+				<configuration>
+					<image>
+						<name>brunosousa16/${project.artifactId}:${project.version}</name>
+					</image>
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+				</configuration>
+
+	TEM QUE FICAR COMO SEGUE:
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+					<image>
+						<name>brunosousa16/${project.artifactId}:${project.version}</name>
+					</image>
+					<pullPolicy>IF_NOT_PRESENT</pullPolicy>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	*** Fazer build imagem docker do projeto pela janela da IDE
+
+	* botão direito no projeto > Run As > Maven Build
+	* em 'Goals' digitar 'spring-boot:build-image -DskipTests' OBS: o -DskipTests não é recomendado para produção
+	* 'Apply' e 'Run' > Vai começar a criar a imagem docker do projeto
+ 	
+	*** BUild pelo docker-compose.yml
+
+	* docker-compose up -d
+	***************************************************************************
+
+	2* No pom.xml do 'api-gateway, copiar toda a tag build do naming server
+	
+	
+
+
+
+

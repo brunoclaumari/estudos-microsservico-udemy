@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+# docker run -p 9411:9411 openzipkin/zipkin:2.23.2      
+  zipkin-server:
+    image: openzipkin/zipkin:2.23.2
+    ports:
+      - 9411:9411
+    networks:
+      - microservice1-network
+  naming-server:
+    image: brunosousa16/naming-server:0.0.1-SNAPSHOT
+    ports:
+      - 8761:8761
+    networks:
+      - microservice1-network
+  api-gateway:
+    image: brunosousa16/api-gateway:0.0.1-SNAPSHOT
+    ports:
+      - 8765:8765
+    depends_on:
+      - naming-server
+    environment:
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/    
+    networks:
+      - microservice1-network      
+networks:
+  microservice1-network:
+    driver: bridge
