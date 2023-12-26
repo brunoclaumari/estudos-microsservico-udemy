@@ -21,7 +21,8 @@ services:
     depends_on:
       - naming-server
     environment:
-      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/    
+      SPRING.ZIPKIN.BASEURL: http://zipkin-server:9411/
+      EUREKA.CLIENT.SERVICEURL.DEFAULTZONE: http://naming-server:8761/eureka 
     networks:
       - microservice1-network      
 networks:

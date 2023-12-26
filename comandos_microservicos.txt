@@ -70,18 +70,29 @@ spring:
 		</plugins>
 	</build>
 
-	*** Fazer build imagem docker do projeto pela janela da IDE
+	1.1*** Fazer build imagem docker do projeto pela janela da IDE
 
 	* botão direito no projeto > Run As > Maven Build
 	* em 'Goals' digitar 'spring-boot:build-image -DskipTests' OBS: o -DskipTests não é recomendado para produção
 	* 'Apply' e 'Run' > Vai começar a criar a imagem docker do projeto
  	
-	*** BUild pelo docker-compose.yml
+	1.2*** BUild pelo docker-compose.yml
 
 	* docker-compose up -d
 	***************************************************************************
 
 	2* No pom.xml do 'api-gateway, copiar toda a tag build do naming server
+
+	2.1**Fazer build imagem docker do projeto pelo terminal na pasta:
+
+	Botão direito no projeto > Show in local terminal > Terminal [vai abrir um terminal no STS dentro da pasta do projeto]
+	--pode ser no Powershell ou no cmd
+
+	*mvn spring-boot:build-image -DskipTests (o -DskipTests não é recomendado para produção)
+
+	2.2*** Build pelo docker-compose.yml
+
+	* docker-compose up -d
 	
 	
 
