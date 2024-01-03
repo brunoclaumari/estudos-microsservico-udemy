@@ -93,6 +93,35 @@ spring:
 	2.2*** Build pelo docker-compose.yml
 
 	* docker-compose up -d
+
+	--senha container mysql cambio_service : msBr123
+	--senha container mysql book_service : msBr123
+
+	2.3*Para entrar no container mysql
+
+	docker exec -it <nome_do-container> mysql -uroot -p
+	docker exec -it exemplo-microsservico-cambio-db-1 mysql -uroot -p
+
+	3* Cambio service com Dockerfile
+
+	3.1* no terminal dentro do projeto, fazer:
+	mvn clean package -DskipTests
+
+
+************Conteiner rabbit mq (tem que usar em caso o zipkin esteja fora) ***************************
+
+	
+	1* Adicionar dependência (maven) no cambio-service, book-service e api-gateway
+
+
+	2* Adicionar o 'depends_on' dentro do docker-compose nos escopos do cambio-service, book-service e api-gateway
+
+    depends_on:
+      - rabbit-mq
+
+	*3 Dentro do docker-compose, no escopo do api-gateway, em 'environment' adicionar tbm a variável do rabbit:
+	
+      RABBIT_URI: amqp://guest:guest@rabbit-mq:5672 
 	
 	
 
